@@ -5,6 +5,14 @@
 }(this, function (exports,d3) { 'use strict';
 
   function graphScroll(){
+    console.log("====================!!================");
+        console.log("====================!!================");
+        console.log("====================!!================");
+        console.log("====================!!================");
+        console.log("====================!!================");
+        console.log("====================!!================");
+        console.log("====================!!================");
+    
     var windowHeight,
         dispatch = d3.dispatch("scroll", "active"),
         sections = d3.select('null'),
@@ -21,7 +29,6 @@
         offset = 200
 
     function reposition(){
-      console.log("graph scroll reposition test--------");
       var i1 = 0
       sectionPos.forEach(function(d, i){
         if (d < pageYOffset - containerStart + offset) i1 = i
