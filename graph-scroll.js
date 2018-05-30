@@ -21,6 +21,7 @@
         offset = 200
 
     function reposition(){
+      console.log("graph scroll reposition test--------");
       var i1 = 0
       sectionPos.forEach(function(d, i){
         if (d < pageYOffset - containerStart + offset) i1 = i
