@@ -59,41 +59,6 @@ export function graphScroll(){
     belowStart = containerBB.bottom - graphHeight + pageYOffset
   }
 
-  function keydown() {
-    if (!isFixed) return
-    var delta
-    switch (d3.event.keyCode) {
-      case 39: // right arrow
-      if (d3.event.metaKey) return
-      case 40: // down arrow
-      case 34: // page down
-      delta = d3.event.metaKey ? Infinity : 1 ;break
-      case 37: // left arrow
-      if (d3.event.metaKey) return
-      case 38: // up arrow
-      case 33: // page up
-      delta = d3.event.metaKey ? -Infinity : -1 ;break
-      case 32: // space
-      delta = d3.event.shiftKey ? -1 : 1
-      ;break
-      default: return
-    }
-
-    var i1 = Math.max(0, Math.min(i + delta, n - 1))
-    if (i1 == i) return // let browser handle scrolling past last section
-    d3.select(document.documentElement)
-        .interrupt()
-      .transition()
-        .duration(500)
-        .tween("scroll", function() {
-          var i = d3.interpolateNumber(pageYOffset, sectionPos[i1] + containerStart)
-          return function(t) { scrollTo(0, i(t)) }
-        })
-
-    d3.event.preventDefault()
-  }
-
-
   var rv ={}
 
   rv.container = function(_x){
@@ -125,8 +90,7 @@ export function graphScroll(){
 
     d3.select(window)
         .on('scroll.gscroll'  + eventId, reposition)
-        .on('resize.gscroll'  + eventId, resize)
-        .on('keydown.gscroll' + eventId, keydown)
+        .on('resize.gscroll'  + eventId, resize);
     
     resize()
     if (window['gscrollTimer' + eventId]) window['gscrollTimer' + eventId].stop()

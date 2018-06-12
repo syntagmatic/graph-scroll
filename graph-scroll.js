@@ -4,8 +4,6 @@
   (factory((global.d3 = global.d3 || {}),global.d3));
 }(this, function (exports,d3) { 'use strict';
 
-  console.log("======EDITED GRAPHSCROLL========");                             
-                               
   function graphScroll(){
     var windowHeight,
         dispatch = d3.dispatch("scroll", "active"),
@@ -23,7 +21,6 @@
         offset = 200
 
     function reposition(){
-      console.log("graph scroll reposition test--------");
       var i1 = 0
       sectionPos.forEach(function(d, i){
         if (d < pageYOffset - containerStart + offset) i1 = i
@@ -57,8 +54,7 @@
       var startPos
       sections.each(function(d, i){
         if (!i) startPos = this.getBoundingClientRect().top
-        sectionPos.push(this.getBoundingClientRect().top -  startPos) 
-      })
+        sectionPos.push(this.getBoundingClientRect().top -  startPos) })
 
       var containerBB = container.node().getBoundingClientRect()
       var graphHeight = graph.node() ? graph.node().getBoundingClientRect().height : 0
@@ -98,7 +94,7 @@
 
       d3.select(window)
           .on('scroll.gscroll'  + eventId, reposition)
-          .on('resize.gscroll'  + eventId, resize)
+          .on('resize.gscroll'  + eventId, resize);
       
       resize()
       if (window['gscrollTimer' + eventId]) window['gscrollTimer' + eventId].stop()
