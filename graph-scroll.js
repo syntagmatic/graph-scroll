@@ -4,6 +4,8 @@
   (factory((global.d3 = global.d3 || {}),global.d3));
 }(this, function (exports,d3) { 'use strict';
 
+  console.log("======EDITED GRAPHSCROLL========");                             
+                               
   function graphScroll(){
     var windowHeight,
         dispatch = d3.dispatch("scroll", "active"),
